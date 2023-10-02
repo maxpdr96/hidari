@@ -6,6 +6,7 @@ import com.hidarisoft.hidari.srcs.IDownloadVideo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import javax.print.Doc;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,12 +53,9 @@ public class AnimesOnlineNz implements IDownloadVideo {
 
                 var scriptElements = sadTest.select("script[type=application/ld+json]");
 
-                // Verifica se há elementos de script
                 if (!scriptElements.isEmpty()) {
-                    // Obtém o conteúdo do script
                     String scriptContent = Objects.requireNonNull(scriptElements.first()).data();
 
-                    // Extrai o valor do atributo contentUrl do JSON
                     String contentUrl = extractContentUrlFromJson(scriptContent);
 
                     System.out.println("Value of contentUrl: " + contentUrl);
@@ -72,8 +70,11 @@ public class AnimesOnlineNz implements IDownloadVideo {
     }
 
     @Override
-    public String getTitle(Document document) {
-        return document.select("#info .data h1").text().replaceAll(" - Animes Online", "");
+    public String getTitle(Object document) {
+        if (document instanceof Document document1){
+            return document1.select("#info .data h1").text().replaceAll(" - Animes Online", "");
+        }
+        return "";
     }
 
     @Override

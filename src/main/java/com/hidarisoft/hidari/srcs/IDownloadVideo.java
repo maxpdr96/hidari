@@ -7,6 +7,6 @@ import java.io.IOException;
 public interface IDownloadVideo {
 
     void execute(String url) throws IOException;
-    String getTitle(Document url);
+    String getTitle(Object url);
     void downloadVideo(String title, String url, Document document) throws IOException;
 }

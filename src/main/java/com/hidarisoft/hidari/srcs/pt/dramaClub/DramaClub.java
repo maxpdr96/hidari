@@ -35,8 +35,12 @@ public class DramaClub implements IDownloadVideo {
     }
 
     @Override
-    public String getTitle(Document url) {
-        return url.select(".data h1").text();
+    public String getTitle(Object url) {
+        if (url instanceof Document document) {
+            return document.select(".data h1").text();
+        }
+        return "";
+
     }
 
     @Override
