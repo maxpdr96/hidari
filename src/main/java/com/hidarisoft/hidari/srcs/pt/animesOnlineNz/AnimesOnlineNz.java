@@ -3,10 +3,10 @@ package com.hidarisoft.hidari.srcs.pt.animesOnlineNz;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.hidarisoft.hidari.srcs.IDownloadVideo;
+import com.hidarisoft.hidari.utils.Constants;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import javax.print.Doc;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 public class AnimesOnlineNz implements IDownloadVideo {
     private static final String NAME = "Animes Online Nz";
     private static final String BASE_URL = "https://animesonline.nz";
-    private static final String LANG = "pt-BR";
 
     @Override
     public void execute(String url) throws IOException {
@@ -71,7 +70,7 @@ public class AnimesOnlineNz implements IDownloadVideo {
 
     @Override
     public String getTitle(Object document) {
-        if (document instanceof Document document1){
+        if (document instanceof Document document1) {
             return document1.select("#info .data h1").text().replaceAll(" - Animes Online", "");
         }
         return "";
@@ -82,7 +81,7 @@ public class AnimesOnlineNz implements IDownloadVideo {
         URL url = new URL(ContentUrl);
         InputStream inVideo = url.openStream();
 
-        FileOutputStream out = new FileOutputStream(title + ".mp4");
+        FileOutputStream out = new FileOutputStream(Constants.DOWNLOAD_FOLDER.getDescription() + title + ".mp4");
 
         byte[] buffer = new byte[1024];
         int len;

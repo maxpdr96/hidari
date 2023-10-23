@@ -4,6 +4,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.hidarisoft.hidari.srcs.IDownloadVideo;
+import com.hidarisoft.hidari.utils.Constants;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -81,7 +82,7 @@ public class GoAnimes implements IDownloadVideo {
         URL url = new URL(ContentUrl);
         InputStream inVideo = url.openStream();
 
-        FileOutputStream out = new FileOutputStream(title + ".mp4");
+        FileOutputStream out = new FileOutputStream(Constants.DOWNLOAD_FOLDER.getDescription() + title + ".mp4");
 
         byte[] buffer = new byte[1024];
         int len;

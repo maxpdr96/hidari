@@ -2,6 +2,7 @@ package com.hidarisoft.hidari.srcs.pt.dramaClub;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hidarisoft.hidari.srcs.IDownloadVideo;
+import com.hidarisoft.hidari.utils.Constants;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class DramaClub implements IDownloadVideo {
+
     @Override
     public void execute(String url) throws IOException {
         Document docCustomConn = Jsoup.connect(url)
@@ -69,7 +71,7 @@ public class DramaClub implements IDownloadVideo {
                     URL url1 = new URL(doramaData.file());
 
                     InputStream inVideo = url1.openStream();
-                    FileOutputStream out = new FileOutputStream(title + ".mp4");
+                    FileOutputStream out = new FileOutputStream(Constants.DOWNLOAD_FOLDER.getDescription() + title + ".mp4");
 
                     byte[] buffer = new byte[1024];
                     int len;
